@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.0',
+    sidebar: {"position":"right","display":"always","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Moya&amp;amp;Alamofire&amp;amp;RxSwift&amp;amp;ObjectMapper的配合使用主要是学习Moya的熟练使用，全文涉及到CYLTabBarController搭建简单易用的框架、Swift和OC互相调用、FLEX显示界面层级UI的属性、ObjectMapper解析数据、Kingfisher加载网络图片、MBProgressHUD融合到请求里自动显示与隐藏请求等待、MJRef">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Moya&amp;Alamofire&amp;RxSwift&amp;ObjectMapper的配合使用">
+<meta property="og:url" content="http://nilhy.cn/2018/04/13/iOS/Swift/Swift-Moya&Alamofire&RxSwift&ObjectMapper的配合使用.html">
+<meta property="og:site_name" content="nilhy&#39;s Blog">
+<meta property="og:description" content="Moya&amp;amp;Alamofire&amp;amp;RxSwift&amp;amp;ObjectMapper的配合使用主要是学习Moya的熟练使用，全文涉及到CYLTabBarController搭建简单易用的框架、Swift和OC互相调用、FLEX显示界面层级UI的属性、ObjectMapper解析数据、Kingfisher加载网络图片、MBProgressHUD融合到请求里自动显示与隐藏请求等待、MJRef">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-11T01:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Moya&amp;Alamofire&amp;RxSwift&amp;ObjectMapper的配合使用">
+<meta name="twitter:description" content="Moya&amp;amp;Alamofire&amp;amp;RxSwift&amp;amp;ObjectMapper的配合使用主要是学习Moya的熟练使用，全文涉及到CYLTabBarController搭建简单易用的框架、Swift和OC互相调用、FLEX显示界面层级UI的属性、ObjectMapper解析数据、Kingfisher加载网络图片、MBProgressHUD融合到请求里自动显示与隐藏请求等待、MJRef">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="nilhy's Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://nilhy.cn/2018/04/13/iOS/Swift/Swift-Moya&Alamofire&RxSwift&ObjectMapper的配合使用">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Moya&Alamofire&RxSwift&ObjectMapper的配合使用 | nilhy's Blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?327573ae29bff3e49a0152fd0be5e1c2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">nilhy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">个人博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">8</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">4</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">2</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pbGh5" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2018/04/13/iOS/Swift/Swift-Moya&Alamofire&RxSwift&ObjectMapper的配合使用.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nilhy">
+      <meta itemprop="description" content="优秀的人,不是不合群,而是他们合群的人里面没有你">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nilhy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Moya&Alamofire&RxSwift&ObjectMapper的配合使用
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-04-13 02:11:09" itemprop="dateCreated datePublished" datetime="2018-04-13T02:11:09+08:00">2018-04-13</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS-开发/" itemprop="url" rel="index"><span itemprop="name">iOS 开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2018/04/13/iOS/Swift/Swift-Moya&Alamofire&RxSwift&ObjectMapper的配合使用.html" class="leancloud_visitors" data-flag-title="Moya&Alamofire&RxSwift&ObjectMapper的配合使用">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Moya-amp-Alamofire-amp-RxSwift-amp-ObjectMapper的配合使用"><a href="#Moya-amp-Alamofire-amp-RxSwift-amp-ObjectMapper的配合使用" class="headerlink" title="Moya&amp;Alamofire&amp;RxSwift&amp;ObjectMapper的配合使用"></a>Moya&amp;Alamofire&amp;RxSwift&amp;ObjectMapper的配合使用</h1><p>主要是学习Moya的熟练使用，全文涉及到CYLTabBarController搭建简单易用的框架、Swift和OC互相调用、FLEX显示界面层级UI的属性、ObjectMapper解析数据、Kingfisher加载网络图片、MBProgressHUD融合到请求里自动显示与隐藏请求等待、MJRefresh作为刷新简单写了一个类别、SDCycleScrollView显示轮播图、Then的使用,最终实现了一个简单的界面..</p>
+<p>既然是介绍Moya的就主要先来介绍它吧，Moya是对 Alamofire的进一步封装,简化了网络请求,方便维护</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9saW5rLmppYW5zaHUuY29tP3Q9aHR0cHM6Ly9naXRodWIuY29tL01veWEvTW95YS90cmVlL21hc3Rlci9kb2Nz" title="https://link.jianshu.com?t=https://github.com/Moya/Moya/tree/master/docs">点击查看官方教程<i class="fa fa-external-link"></i></span></p>
+<a id="more"></a>
+<h4 id="Moya发送简单的网络请求"><a href="#Moya发送简单的网络请求" class="headerlink" title="Moya发送简单的网络请求"></a>Moya发送简单的网络请求</h4><p>枚举类型需满足TargetType协议</p>
+<pre><code>public protocol TargetType {
+var baseURL: NSURL { get }
+var path: String { get }
+var method: Moya.Method { get }
+var parameters: [String: AnyObject]? { get }
+var sampleData: NSData { get }
+}
+`&lt;/pre&gt;
+
+实现一个枚举代码如下：
+
+&lt;pre&gt;`import Foundation
+import Moya
+
+enum ApiManager {
+case getDantangList(String)
+case getNewsList
+case getMoreNews(String)
+case getThemeList
+case getThemeDesc(Int)
+case getNewsDesc(Int)
+case Create(title: String, body: String, userId: Int)
+case Login(phone:String,password:String)
+case Banner(String)
+}
+
+extension ApiManager: TargetType {
+/// The target&apos;s base `URL`.
+var baseURL: URL {
+switch self {
+case .Create(_,_,_):
+return URL.init(string: &quot;http://jsonplaceholder.typicode.com/&quot;)!
+case .getDantangList,.Banner:
+return URL.init(string: &quot;http://api.dantangapp.com/&quot;)!
+case .Login:
+return URL.init(string: &quot;https://api.grtstar.cn&quot;)!
+default:
+return URL.init(string: &quot;http://news-at.zhihu.com/api/&quot;)!
+}
+}
+
+/// The path to be appended to `baseURL` to form the full `URL`.
+var path: String {
+switch self {
+case .getDantangList(let page):
+return &quot;v1/channels/\(page)/items&quot;
+case .getNewsList:
+return &quot;4/news/latest&quot;
+case .getMoreNews(let date):
+return &quot;4/news/before/&quot; + date
+case .getThemeList:
+return &quot;4/themes&quot;
+case .getThemeDesc(let id):
+return &quot;4/theme/\(id)&quot;
+case .getNewsDesc(let id):
+return &quot;4/news/\(id)&quot;
+case .Create(_, _, _):
+return &quot;posts&quot;
+case .Login:
+return &quot;/rest/user/certificate&quot;
+case .Banner:
+return &quot;v1/banners&quot;
+
+}
+}
+
+/// The HTTP method used in the request.
+var method: Moya.Method {
+switch self {
+
+case .Create(_, _, _):
+return .post
+case .Login:
+return .post
+default:
+return .get
+}
+
+}
+
+/// The parameters to be incoded in the request.
+var parameters: [String: Any]? {
+switch self {
+case .Create(let title, let body, let userId):
+return [&quot;title&quot;: title, &quot;body&quot;: body, &quot;userId&quot;: userId]
+
+case .Login(let number, let passwords):
+return [&quot;mobile&quot; : number, &quot;password&quot; :  passwords,&quot;deviceId&quot;: &quot;12121312323&quot;]
+case .Banner(let strin):
+return [&quot;channel&quot; :strin]
+
+default:
+return nil
+
+}
+}
+
+/// The method used for parameter encoding.
+var parameterEncoding: ParameterEncoding {
+return URLEncoding.default
+}
+
+/// Provides stub data for use in testing.
+var sampleData: Data {
+
+switch self {
+case .Create(_, _, _):
+return &quot;Create post successfully&quot;.data(using: String.Encoding.utf8)!
+default:
+return &quot;&quot;.data(using: String.Encoding.utf8)!
+
+}
+}
+
+var task: Task {
+return .request
+}
+
+/// Whether or not to perform Alamofire validation. Defaults to `false`.
+var validate: Bool {
+return false
+}
+}
+
+`&lt;/pre&gt;
+
+#### 现在就可以发送简单的网络请求了:
+
+1.定义一个全局变量MoyaProvider
+
+&lt;pre&gt;`let ApiManagerProvider = MoyaProvider&amp;lt;ApiManager&amp;gt;
+
+`&lt;/pre&gt;
+
+2.发送网络请求
+
+&lt;pre&gt;`ApiManagerProvider.request(.getNewsList) { (result) -&amp;gt; () in
+case let .success(response):
+break
+case let .failure(error):
+break  
+
+}
+`&lt;/pre&gt;
+
+#### MoyaProvider的初始化
+
+我们观察下MoyaProvider的初始化方法. MoyaProvider初始化都是有默认值的
+
+&lt;pre&gt;`public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
+requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,
+stubClosure: @escaping StubClosure = MoyaProvider.neverStub,
+manager: Manager = MoyaProvider&amp;lt;Target&amp;gt;.defaultAlamofireManager(),
+plugins: [PluginType] = [],
+trackInflights: Bool = false)
+
+`&lt;/pre&gt;
+
+这些可选参数就是Moya的强大之处了 ，文章主要也是介绍如何使用这些插件的。
+
+#### 参数说明：
+</code></pre><ul>
+<li>EndpointClosure<br>可以对请求参数做进一步的修改,如可以修改endpointByAddingParameters endpointByAddingHTTPHeaderFields等</li>
+<li>RequestClosure 你可以在发送请求前，做点手脚. 如修改超时时间，打印一些数据等等</li>
+<li>StubClosure可以设置请求的延迟时间,可以当做模拟慢速网络</li>
+<li>Manager 请求网络请求的方式。默认是Alamofire</li>
+<li><p>[PluginType]一些插件。回调的位置在发送请求后，接受服务器返回之前</p>
+<p>稍后详细介绍这部分内容。</p>
+<h4 id="RxSwift"><a href="#RxSwift" class="headerlink" title="RxSwift"></a>RxSwift</h4><p>Moya也有自己的RxSwift的扩展，不懂RxSwift的童鞋可以看下我们博客中的关于RxSwift库介绍的文章。Moya使用RxSwift很简单，如下所示我们只需要对请求结果进行监听就行了</p>
+<p><em>使用RxSwift可以这样来请求</em></p>
+<pre>`let provider = RxMoyaProvider&lt;ApiManager&gt;()//要使用RxMoyaProvider创建provider，暂时不携带任何参数
+provider.request(.getNewsList).subscribe { event in
+switch event {
+case .next(let response):
+// do something with the data
+case .error(let error):
+// handle the error
+}
+}
+
+`</pre>
+
+<p>我们还可以对Observable进行扩展，自定义一些自己流水线操作，比如自动实现json转化Model，定义如下。</p>
+<pre>`func mapObject&lt;T: Mappable&gt;(type: T.Type) -&gt; Observable&lt;T&gt; {
+return self.map { response in
+//if response is a dictionary, then use ObjectMapper to map the dictionary
+//if not throw an error
+guard let dict = response as? [String: Any] else {
+throw RxSwiftMoyaError.ParseJSONError
+}
+guard (dict["code"] as?Int) != nil else{
+throw RxSwiftMoyaError.ParseJSONError
+}
+
+if let error = self.parseError(response: dict) {
+throw error
+}
+
+return Mapper&lt;T&gt;().map(JSON: dict)!
+}
+}
+`</pre>
+
+<p>下边的方法就需要根据服务器返回数据进行判断了，我常用的逻辑是数据请求成功了才返回再就行界面赋值刷新操作，如果是状态码不成功就直接拦截抛出错误（后台返回的message），比如是登录密码错误提示之类的</p>
+<pre>`fileprivate func parseError(response: [String: Any]?) -&gt; NSError? {
+var error: NSError?
+if let value = response {
+var code:Int?
+
+//后台的数据每次会返回code只有是200才会表示逻辑正常执行
+if let codes = value["code"] as?Int
+{
+code = codes
+
+}
+if  code != 200 {
+var msg = ""
+if let message = value["message"] as? String {
+msg = message
+}
+error = NSError(domain: "Network", code: code!, userInfo: [NSLocalizedDescriptionKey: msg])
+}
+}
+return error
+}
+
+`</pre>
+
+<p><em>那么就可以定义一个请求方法了 </em></p>
+<pre>`func login(phone: String, password:String) -&gt; Observable&lt;UserModel&gt; {
+return provider.request(.Login(phone: phone, password: password))
+.mapJSON()
+.debug() // 打印请求发送中的调试信息
+
+.mapObject(type: UserModel.self)
+}
+`</pre>
+
+<p>如下代码就完成了一次请求</p>
+<pre>`let viewModel  = ViewModel(self)
+viewModel.login(phone: "156178...." , password: "11111")
+.subscribe(onNext: { (userModel: UserModel) in
+//do something with posts
+print(userModel.user?.nickName ?? "")
+
+})
+.addDisposableTo(dispose)
+`</pre>
+
+<p>Moya也为我们提供了很多Observable的扩展，让我们能更轻松的处理MoyaResponse，常用的如下：</p>
+</li>
+<li><p>filter(statusCodes:) 过滤response状态码</p>
+</li>
+<li>filterSuccessfulStatusCodes() 过滤状态码为请求成功的</li>
+<li>mapJSON() 将请求response转化为JSON格式</li>
+<li><p>mapString() 将请求response转化为String格式</p>
+<p>具体可以参考<span class="exturl" data-url="aHR0cHM6Ly9saW5rLmppYW5zaHUuY29tP3Q9aHR0cHM6Ly9naXRodWIuY29tL01veWEvTW95YS9ibG9iL21hc3Rlci9kb2NzL1J4U3dpZnQubWQ=" title="https://link.jianshu.com?t=https://github.com/Moya/Moya/blob/master/docs/RxSwift.md">官方文档<i class="fa fa-external-link"></i></span></p>
+<hr>
+<p>下边就说说RxMoyaProvider参数吧</p>
+<h4 id="EndpointClosure"><a href="#EndpointClosure" class="headerlink" title="EndpointClosure"></a>EndpointClosure</h4><p><em>没写什么就打印下参数，请求方法，路径..可以核对</em></p>
+<pre>`private func endpointMapping&lt;Target: TargetType&gt;(target: Target) -&gt; Endpoint&lt;Target&gt; {
+print("请求连接：\(target.baseURL)\(target.path) \n方法：\(target.method)\n参数：\(String(describing: target.parameters)) ")
+
+return MoyaProvider.defaultEndpointMapping(for: target)
+}
+
+`</pre>
+
+<h4 id="manager"><a href="#manager" class="headerlink" title="manager"></a>manager</h4><p><em>用的是Alamofire请求，这里主要写了一个忽略SSL验证的方法，当然也可以在这里修改请求头等等</em></p>
+<pre>`public func defaultAlamofireManager() -&gt; Manager {
+let configuration = URLSessionConfiguration.default
+configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+
+let policies: [String: ServerTrustPolicy] = [
+
+"ap.dimain.cn": .disableEvaluation
+]
+let manager = Alamofire.SessionManager(configuration: configuration,serverTrustPolicyManager: ServerTrustPolicyManager(policies: policies))
+
+manager.startRequestsImmediately = false
+return manager
+}
+
+`</pre>
+
+<p>最有意思的还是插件了 ，可以自定义各种功能</p>
+<h4 id="plugins"><a href="#plugins" class="headerlink" title="plugins"></a>plugins</h4><p>plugins参数是一个数组的形式，遵循PluginType协议我们先看下PluginType的协议内容</p>
+<pre>`public protocol PluginType {
+/// Called to modify a request before sending
+//请求前可以修改一些request
+func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest
+
+/// Called immediately before a request is sent over the network (or stubbed).
+//开始请求
+func willSend(_ request: RequestType, target: TargetType)
+
+/// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.
+//结束请求
+func didReceive(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)
+
+/// Called to modify a result before completion
+func process(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) -&gt; Result&lt;Moya.Response, MoyaError&gt;
+}
+
+`</pre>
+
+<p><em>状态条中的网络加载提示,俗称”菊花加载</em></p>
+<h4 id="networkActivityPlugin"><a href="#networkActivityPlugin" class="headerlink" title="networkActivityPlugin"></a>networkActivityPlugin</h4><pre>`let networkActivityPlugin = NetworkActivityPlugin { (change) -&gt; () in
+
+switch(change){
+
+case .ended:
+
+UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
+case .began:
+
+UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+}
+}
+
+`</pre>
+
+<p>NetworkActivityPlugin是Moya提供的方法，还是根据PluginType的协议实现的</p>
+<p><em>请求一般就需要loading了这里用MBProgressHUD实现自动显示隐藏</em></p>
+<pre>`
+public final class RequestLoadingPlugin: PluginType {
+private let viewController: UIViewController
+var HUD:MBProgressHUD
+var hide:Bool
+
+init(_ vc: UIViewController,_ hideView:Bool) {
+self.viewController = vc
+self.hide = hideView
+HUD = MBProgressHUD.init()
+guard self.hide else {
+
+return
+}
+HUD = MBProgressHUD.showAdded(to: self.viewController.view, animated: true)
+
+}
+
+public func willSend(_ request: RequestType, target: TargetType) {
+print("开始请求\(self.viewController)")
+
+if self.hide  != false  {
+
+HUD.mode = MBProgressHUDMode.indeterminate
+HUD.label.text = "加载中"
+HUD.bezelView.color = UIColor.lightGray
+
+HUD.removeFromSuperViewOnHide = true
+HUD.backgroundView.style = .solidColor //或SolidColor
+
+}
+}
+
+public func didReceive(_ result: Result&lt;Response, MoyaError&gt;, target: TargetType) {
+print("结束请求")
+HUD.hide(animated: true)
+
+}
+
+}
+
+`</pre>
+
+<p><em>修改请求头想想不该放在插件了实现，应该是在manager里实现，先放出来代码吧</em></p>
+<pre>`struct AuthPlugin: PluginType {
+let token: String
+
+func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest {
+var request = request
+request.timeoutInterval = 30
+request.addValue(token, forHTTPHeaderField: "token")
+request.addValue("ios", forHTTPHeaderField: "platform")
+request.addValue("version", forHTTPHeaderField: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)
+return request
+}
+}
+`</pre>
+
+<p><em>请求时候遇到逻辑错误或者不满足条件，参数错误等要提示这里用的是Toast</em></p>
+<pre>`//检测token有效性
+final class AccessTokenPlugin: PluginType {
+private let viewController: UIViewController
+
+init(_ vc: UIViewController) {
+self.viewController = vc
+}
+
+public func willSend(_ request: RequestType, target: TargetType) {}
+public func didReceive(_ result: Result&lt;Response, MoyaError&gt;, target: TargetType) {
+switch result {
+case .success(let response):
+//请求状态码
+guard  response.statusCode == 200   else {
+return
+}
+var json:Dictionary? = try! JSONSerialization.jsonObject(with: response.data,options:.allowFragments) as! [String: Any]
+print("请求状态码\(json?["status"] ?? "")")
+guard (json?["message"]) != nil  else {
+return
+}
+guard let codeString = json?["status"]else {return}
+//请求状态为1时候立即返回不弹出任何提示 否则提示后台返回的错误信息
+guard codeString as! Int != 1 else{return}
+self.viewController.view .makeToast( json?["message"] as! String)
+
+case .failure(let error):
+print("出错了\(error)")
+
+break
+}
+}
+}
+
+`</pre>
+
+<p>AccessTokenPlugin这个名字有点问题哈，起初是想在这里判断token不正确就退出登录用的由于没有合适的api就实现了请求结果的状态判断，这就自动实现了逻辑错误的提示了 不用一个请求一个请求的判断了，还是挺方便的</p>
+<p>有了这些插件就可以这样初始化RxMoyaProvider</p>
+<pre>`let provider :RxMoyaProvider&lt;ApiManager&gt;
+provider = RxMoyaProvider&lt;ApiManager&gt;(
+endpointClosure: endpointMapping,
+manager:defaultAlamofireManager(),
+plugins:[RequestLoadingPlugin(self.viewController,true),
+AccessTokenPlugin( self.viewController), NetworkLoggerPlugin(verbose: true),
+networkActivityPlugin,AuthPlugin(token: "暂时为空")]
+
+`</pre>
+
+<p>关于Moya的用法先介绍到这里后续我会继续探究更加灵活全面的用法。</p>
+<hr>
+<h4 id="下边介绍下Then的语法棉花糖吧，看例子吧"><a href="#下边介绍下Then的语法棉花糖吧，看例子吧" class="headerlink" title="下边介绍下Then的语法棉花糖吧，看例子吧"></a>下边介绍下<span class="exturl" data-url="aHR0cHM6Ly9saW5rLmppYW5zaHUuY29tP3Q9aHR0cHM6Ly9naXRodWIuY29tL2RldnhvdWwvVGhlbg==" title="https://link.jianshu.com?t=https://github.com/devxoul/Then">Then<i class="fa fa-external-link"></i></span>的语法棉花糖吧，看例子吧</h4><pre>`_ = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 50)).then({ (make) in
+
+make.text = "Then的简单用法超赞👍"
+make.font = .systemFont(ofSize: 20)
+make.textColor = .red
+make.textAlignment = .center
+self.view.addSubview(make)
+
+})
+
+UserDefaults.standard.do {
+$0.set("devxoul", forKey: "username")
+$0.set("devxoul@gmail.com", forKey: "email")
+$0.synchronize()
+
+let tableView = UITableView().then {
+$0.backgroundColor = .clear
+$0.separatorStyle = .none
+$0.register(MyCell.self, forCellReuseIdentifier: "myCell")
+}
+
+}   
+`</pre>
+
+<p><em>如果布局这样还不简单那再看下边用<span class="exturl" data-url="aHR0cHM6Ly9saW5rLmppYW5zaHUuY29tP3Q9aHR0cHM6Ly9naXRodWIuY29tL2RldnhvdWwvVGhlbg==" title="https://link.jianshu.com?t=https://github.com/devxoul/Then">Then<i class="fa fa-external-link"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9saW5rLmppYW5zaHUuY29tP3Q9aHR0cHM6Ly9naXRodWIuY29tL1NuYXBLaXQvU25hcEtpdA==" title="https://link.jianshu.com?t=https://github.com/SnapKit/SnapKit">SnapKit<i class="fa fa-external-link"></i></span>一起使用的方式</em></p>
+<pre>`_ = UILabel().then({ (make) in
+make.text = "Then的简单用法超赞👍"
+make.font = .systemFont(ofSize: 20)
+make.textColor = .red
+make.textAlignment = .center
+self.view.addSubview(make)
+make.snp.makeConstraints({ (make) in
+make.top.left.right.equalTo(0)
+make.height.equalTo(50)
+
+})
+
+})
+
+`</pre>
+
+<p>再不满意只能用Xib布局了….</p>
+<h4 id="在Swift中用SDCycleScrollView轮播图"><a href="#在Swift中用SDCycleScrollView轮播图" class="headerlink" title="在Swift中用SDCycleScrollView轮播图"></a>在Swift中用<span class="exturl" data-url="aHR0cHM6Ly9saW5rLmppYW5zaHUuY29tP3Q9aHR0cHM6Ly9naXRodWIuY29tL2dzZGlvcy9TREN5Y2xlU2Nyb2xsVmlldw==" title="https://link.jianshu.com?t=https://github.com/gsdios/SDCycleScrollView">SDCycleScrollView<i class="fa fa-external-link"></i></span>轮播图</h4><p>SDCycleScrollView之前一直在OC中使用觉得很简单又熟悉了所以这次写的Demo依旧搬了过来，但是呢SDCycleScrollView里实现图片下载用的是SDWebImage，而Swift版本提供了Kingfisher那不可能都用了，因为也不想放弃SDCycleScrollView就不得已修改了里边图片下载的方法，在Swift项目里OC类直接调用Swift类是调用不到的，所以我就咨询了下找到一个合适办法，新建Swift里继承SDCycleScrollView然后用Kingfisher实现图片下载，方法比较简单就是给开发者提供一个参考方法</p>
+<pre>`import UIKit
+import SDCycleScrollView
+import Kingfisher
+class CustomSDCycleScrollView: SDCycleScrollView  {
+
+//因为之前库里边用的是SDWebImageView 缓存的图片 现在 换了Swift版本的Kingfisher所以 无奈修改了原库的方法 重写了下
+open override func imageView(_ imageView: UIImageView!, url: URL!) -&gt; UIImageView! {
+let imageView: UIImageView? = imageView
+imageView?.kf.setImage(with: url,placeholder:UIImage.init(named: "tab_5th_h"))
+return imageView
+}
+//重写oc代码 删除缓存
+override class func clearImagesCache()
+{
+let cache = KingfisherManager.shared.cache
+
+// 获取硬盘缓存的大小
+cache.calculateDiskCacheSize { (size) -&gt; () in
+print("磁盘缓存大小： \(size) bytes ")
+cache.clearDiskCache()
+
+}
+}
+
+}
+
+`</pre>
+
+<p>用的时候直接使用CustomSDCycleScrollView即可</p>
+<h4 id="项目使用MJRefresh实现刷新"><a href="#项目使用MJRefresh实现刷新" class="headerlink" title="项目使用MJRefresh实现刷新"></a>项目使用MJRefresh实现刷新</h4><p><em>给UIScrollView写了一个类别比较简单代码如下</em></p>
+<pre>`import UIKit
+import MJRefresh
+
+extension UIScrollView
+{
+func headerRefresh(block: @escaping () -&gt; ()) -&gt; (){
+
+self.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+block()
+
+})
+
+}
+func footerRefresh(block: @escaping () -&gt; ()) -&gt; (){
+
+self.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
+block()
+
+})
+
+}
+
+func endrefresh(){
+
+self.mj_footer.endRefreshing()
+self.mj_header.endRefreshing()
+
+}
+
+}
+
+`</pre>
+
+<p>用的时候更简单了</p>
+<p><pre>`weak var weakself = self<br>//上拉刷新<br>tableView.headerRefresh {<br>weakself?.loadData()<br>}<br>//下拉加载<br>tableView.footerRefresh{<br>weakself?.loadData()<br>}<br>//结束刷新<br>self.tableView.endrefresh()</pre></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/reward/wechatpay.jpeg" alt="nilhy WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/reward/alipay.jpeg" alt="nilhy Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>nilhy</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="http://nilhy.cn/2018/04/13/iOS/Swift/Swift-Moya&Alamofire&RxSwift&ObjectMapper的配合使用.html" title="Moya&Alamofire&RxSwift&ObjectMapper的配合使用">http://nilhy.cn/2018/04/13/iOS/Swift/Swift-Moya&Alamofire&RxSwift&ObjectMapper的配合使用.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/16/iOS/skill/利用iTunes接口检查App版本更新.html" rel="next" title="利用 iTunes 接口检查App版本更新">
+                <i class="fa fa-chevron-left"></i> 利用 iTunes 接口检查App版本更新
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjQ2Ny8xMzAwMg"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">nilhy</p>
+              <div class="site-description motion-element" itemprop="description">优秀的人,不是不合群,而是他们合群的人里面没有你</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pbGh5" title="GitHub &rarr; https://github.com/nilhy"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vdS9mNjczOTlmMzRjODQ=" title="简书 &rarr; https://www.jianshu.com/u/f67399f34c84"><i class="fa fa-fw fa-heartbeat"></i>简书</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vdXNlci81OGJiZjBlNzhkNmQ4MTAwNjU0Mjk1NmU=" title="掘金 &rarr; https://juejin.im/user/58bbf0e78d6d81006542956e"><i class="fa fa-fw fa-spinner"></i>掘金</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cDovL3dwYS5xcS5jb20vbXNncmQ/dj0zJnVpbj0zNzcxOTA5MyZzaXRlPeWcqOe6v+WuouacjSZtZW51PXllcw==" title="QQ &rarr; http://wpa.qq.com/msgrd?v=3&uin=37719093&site=在线客服&menu=yes"><i class="fa fa-fw fa-qq"></i>QQ</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Moya-amp-Alamofire-amp-RxSwift-amp-ObjectMapper的配合使用"><span class="nav-number">1.</span> <span class="nav-text">Moya&amp;Alamofire&amp;RxSwift&amp;ObjectMapper的配合使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Moya发送简单的网络请求"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Moya发送简单的网络请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RxSwift"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">RxSwift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EndpointClosure"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">EndpointClosure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#manager"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">manager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plugins"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">plugins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#networkActivityPlugin"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">networkActivityPlugin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下边介绍下Then的语法棉花糖吧，看例子吧"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">下边介绍下Then的语法棉花糖吧，看例子吧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在Swift中用SDCycleScrollView轮播图"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">在Swift中用SDCycleScrollView轮播图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目使用MJRefresh实现刷新"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">项目使用MJRefresh实现刷新</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nilhy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Symbols count total: </span>
+    
+    <span title="Symbols count total"></span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    
+    <span title="Reading time total"></span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.0"></script>
+
+
+  
+  <script src="/js/exturl.js?v=7.1.0"></script>
+
+
+  
+  
+  
+
+  
+
+  
+  
+  
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2018/04/13/iOS/Swift/Swift-Moya&Alamofire&RxSwift&ObjectMapper的配合使用.html'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'Um882rnMTbRFAL0paulSd1IG')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'Um882rnMTbRFAL0paulSd1IG',
+                'X-LC-Key': 'JzcEX81FznocaSPnDCQRTinn',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
