@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://nilhy.cn/404/index.html</loc>
+    
+    <lastmod>2019-04-18T09:49:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://nilhy.cn/2018/04/13/iOS/Swift/Swift-Moya&Alamofire&RxSwift&ObjectMapper%E7%9A%84%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8.html</loc>
     
     <lastmod>2019-04-18T08:00:39.000Z</lastmod>
@@ -73,13 +80,6 @@
   
   <url>
     <loc>http://nilhy.cn/categories/index.html</loc>
-    
-    <lastmod>2018-07-11T01:41:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nilhy.cn/other/offline.html</loc>
     
     <lastmod>2018-07-11T01:41:24.000Z</lastmod>
     
