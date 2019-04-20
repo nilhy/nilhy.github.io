@@ -29,7 +29,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
 
 
 
@@ -141,7 +141,7 @@
 <meta property="og:site_name" content="nilhy&#39;s Blog">
 <meta property="og:description" content="iOS 想要检查 App 当前版本是否为最新，一般的方案大概都是服务器自己提供一个接口来获取 App 最新版本是多少，然后再做出相应提示是否需要更新，但是接口需要手动维护，应用要审核，还得等审核通过以后才能更新版本号，其实苹果提供了一个 iTunes 接口，能够查到 App 在 AppStore 上的状态信息，既省事又准确，下面记录一下具体实现方法。   接口信息URLiTunes 接口地址">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-20T13:28:27.000Z">
+<meta property="og:updated_time" content="2019-04-20T14:22:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 iTunes 接口检查App版本更新">
 <meta name="twitter:description" content="iOS 想要检查 App 当前版本是否为最新，一般的方案大概都是服务器自己提供一个接口来获取 App 最新版本是多少，然后再做出相应提示是否需要更新，但是接口需要手动维护，应用要审核，还得等审核通过以后才能更新版本号，其实苹果提供了一个 iTunes 接口，能够查到 App 在 AppStore 上的状态信息，既省事又准确，下面记录一下具体实现方法。   接口信息URLiTunes 接口地址">
@@ -585,7 +585,7 @@
 <p>有兴趣可以看一下，我们要用到的接口如下，xxx 处换成自己 App 的 AppId ，AppId 可以在 iTunes Connect 里面看到。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://itunes.apple.com/lookup?id=xxx</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h5 id="Response-JSON"><a href="#Response-JSON" class="headerlink" title="Response JSON"></a>Response JSON</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"resultCount"</span> : <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"results"</span> : [&#123;</span><br><span class="line">        <span class="attr">"artistId"</span> : <span class="string">"开发者 ID"</span>,</span><br><span class="line">        <span class="attr">"artistName"</span> : <span class="string">"开发者名称"</span>,</span><br><span class="line">        <span class="attr">"trackCensoredName"</span> : <span class="string">"审查名称"</span>,</span><br><span class="line">        <span class="attr">"trackContentRating"</span> : <span class="string">"评级"</span>,</span><br><span class="line">        <span class="attr">"trackId"</span> : <span class="string">"应用程序 ID"</span>,</span><br><span class="line">        "trackName" = "应用程序名称",</span><br><span class="line">        "trackViewUrl" = "应用程序下载网址",</span><br><span class="line">        "userRatingCount" = "用户评论数量",</span><br><span class="line">        "userRatingCountForCurrentVersion" = "当前版本的用户评论数量",</span><br><span class="line">        "version" = "版本号"</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Response-JSON"><a href="#Response-JSON" class="headerlink" title="Response JSON"></a>Response JSON</h5><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"resultCount"</span> : <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"results"</span> : [&#123;</span><br><span class="line">        <span class="attr">"artistId"</span> : <span class="string">"开发者 ID"</span>,</span><br><span class="line">        <span class="attr">"artistName"</span> : <span class="string">"开发者名称"</span>,</span><br><span class="line">        <span class="attr">"trackCensoredName"</span> : <span class="string">"审查名称"</span>,</span><br><span class="line">        <span class="attr">"trackContentRating"</span> : <span class="string">"评级"</span>,</span><br><span class="line">        <span class="attr">"trackId"</span> : <span class="string">"应用程序 ID"</span>,</span><br><span class="line">        <span class="attr">"trackName"</span> : <span class="string">"应用程序名称"</span>,</span><br><span class="line">        <span class="attr">"trackViewUrl"</span> : <span class="string">"应用程序下载网址"</span>,</span><br><span class="line">        <span class="attr">"userRatingCount"</span> : <span class="string">"用户评论数量"</span>,</span><br><span class="line">        <span class="attr">"userRatingCountForCurrentVersion"</span> : <span class="string">"当前版本的用户评论数量"</span>,</span><br><span class="line">        <span class="attr">"version"</span> : <span class="string">"版本号"</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><p>下面是检查版本更新的具体实现方法，注意接口地址 xxx 处换成自己 App 的 AppId</p>
 <ul>
 <li>开始请求</li>
@@ -1356,7 +1356,7 @@
 
                   // select top N slices in content
 
-                  var upperBound = parseInt('-1');
+                  var upperBound = parseInt('1');
                   if (upperBound >= 0) {
                     slicesOfContent = slicesOfContent.slice(0, upperBound);
                   }
@@ -1484,12 +1484,10 @@
           if (results.length > 0) {
             var counter = results[0];
             
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
             
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.time + 1);
-              })
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
             
               .fail(function ({ responseJSON }) {
                 console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
@@ -1573,8 +1571,54 @@
   
 
   
+  
+  
+    
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
 
   
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 
