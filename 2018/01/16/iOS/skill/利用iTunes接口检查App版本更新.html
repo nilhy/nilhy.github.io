@@ -141,7 +141,7 @@
 <meta property="og:site_name" content="nilhy&#39;s Blog">
 <meta property="og:description" content="iOS 想要检查 App 当前版本是否为最新，一般的方案大概都是服务器自己提供一个接口来获取 App 最新版本是多少，然后再做出相应提示是否需要更新，但是接口需要手动维护，应用要审核，还得等审核通过以后才能更新版本号，其实苹果提供了一个 iTunes 接口，能够查到 App 在 AppStore 上的状态信息，既省事又准确，下面记录一下具体实现方法。   接口信息URLiTunes 接口地址">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-19T13:45:22.000Z">
+<meta property="og:updated_time" content="2019-04-20T13:28:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 iTunes 接口检查App版本更新">
 <meta name="twitter:description" content="iOS 想要检查 App 当前版本是否为最新，一般的方案大概都是服务器自己提供一个接口来获取 App 最新版本是多少，然后再做出相应提示是否需要更新，但是接口需要手动维护，应用要审核，还得等审核通过以后才能更新版本号，其实苹果提供了一个 iTunes 接口，能够查到 App 在 AppStore 上的状态信息，既省事又准确，下面记录一下具体实现方法。   接口信息URLiTunes 接口地址">
@@ -333,7 +333,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">4</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">5</span></a>
 
   </li>
         
@@ -531,13 +531,6 @@
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon">
-            <i class="fa fa-eye"></i>
-             阅读次数： 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
 
           
             <div class="post-symbolscount">
@@ -589,7 +582,7 @@
 </blockquote>
 <hr>
 <h4 id="接口信息"><a href="#接口信息" class="headerlink" title="接口信息"></a>接口信息</h4><h5 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h5><p><span class="exturl" data-url="aHR0cDovL3d3dy5hcHBsZS5jb20vaXR1bmVzL2FmZmlsaWF0ZXMvcmVzb3VyY2VzL2RvY3VtZW50YXRpb24vaXR1bmVzLXN0b3JlLXdlYi1zZXJ2aWNlLXNlYXJjaC1hcGkuaHRtbA==" title="http://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html">iTunes 接口地址<i class="fa fa-external-link"></i></span> </p>
-<p>有兴趣可以看一下，我们要用到的接口如下，xxx 处换成自己 App 的 AppId ，AppId 可以在 iTunes Connect 里面看到。</p>
+<p>有兴趣可以看一下，我们要用到的接口如下，xxx 处换成自己 App 的 AppId ，AppId 可以在 iTunes Connect 里面看到。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://itunes.apple.com/lookup?id=xxx</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h5 id="Response-JSON"><a href="#Response-JSON" class="headerlink" title="Response JSON"></a>Response JSON</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"resultCount"</span> : <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"results"</span> : [&#123;</span><br><span class="line">        <span class="attr">"artistId"</span> : <span class="string">"开发者 ID"</span>,</span><br><span class="line">        <span class="attr">"artistName"</span> : <span class="string">"开发者名称"</span>,</span><br><span class="line">        <span class="attr">"trackCensoredName"</span> : <span class="string">"审查名称"</span>,</span><br><span class="line">        <span class="attr">"trackContentRating"</span> : <span class="string">"评级"</span>,</span><br><span class="line">        <span class="attr">"trackId"</span> : <span class="string">"应用程序 ID"</span>,</span><br><span class="line">        "trackName" = "应用程序名称",</span><br><span class="line">        "trackViewUrl" = "应用程序下载网址",</span><br><span class="line">        "userRatingCount" = "用户评论数量",</span><br><span class="line">        "userRatingCountForCurrentVersion" = "当前版本的用户评论数量",</span><br><span class="line">        "version" = "版本号"</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -815,18 +808,24 @@
                 <div class="site-state-item site-state-tags">
                   
                     
+                      <a href="/tags/">
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">标签</span>
                   
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
                 </div>
               
             </nav>
@@ -986,32 +985,6 @@
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
 
 
 
