@@ -437,6 +437,223 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2019/04/21/fullScreenPop.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nilhy">
+      <meta itemprop="description" content="优秀的人,不是不合群<br>而是他们合群的人里面没有你">
+      <meta itemprop="image" content="/images/avatar/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nilhy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/21/fullScreenPop.html" class="post-title-link" itemprop="url">iOS全屏手势POP</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-21 20:58:46" itemprop="dateCreated datePublished" datetime="2019-04-21T20:58:46+08:00">2019-04-21</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/04/21/fullScreenPop.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/21/fullScreenPop.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/04/21/fullScreenPop.html" class="leancloud_visitors" data-flag-title="iOS全屏手势POP">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>在iOS中,默认如果有导航控制器,当push到下一个控制器时,当前界面时可以局部侧滑返回的,这一段范围很少.</p>
+<p>既然系统已经给我们了实现好了,侧滑返回,那么我们如何解决,全屏手势侧滑返回呢?</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><h3 id="拿到系统的返回手势-操作一波"><a href="#拿到系统的返回手势-操作一波" class="headerlink" title="拿到系统的返回手势,操作一波"></a>拿到系统的返回手势,操作一波</h3><h4 id="runtime-打印导航控制器所有私有属性"><a href="#runtime-打印导航控制器所有私有属性" class="headerlink" title="runtime 打印导航控制器所有私有属性"></a>runtime 打印导航控制器所有私有属性</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 通过runtime获取对应的手势属性</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">count</span> : <span class="type">UInt32</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> ivars = class_copyIvarList(<span class="type">UIGestureRecognizer</span>.<span class="keyword">self</span>, &amp;<span class="built_in">count</span>)!</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> ivar = ivars[<span class="type">Int</span>(i)]</span><br><span class="line">    <span class="keyword">let</span> namep = ivar_getName(ivar)</span><br><span class="line">    <span class="keyword">let</span> name = <span class="type">String</span>(cString: namep!)<span class="comment">//属性名称</span></span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/21/fullScreenPop.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2019/04/18/aria2_config.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -879,7 +1096,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2018/01/16/iOS/skill/利用iTunes接口检查App版本更新.html">
+    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2018/03/19/Jump2AppStoreMethod.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nilhy">
@@ -899,7 +1116,233 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/16/iOS/skill/利用iTunes接口检查App版本更新.html" class="post-title-link" itemprop="url">利用 iTunes 接口检查App版本更新</a>
+                <a href="/2018/03/19/Jump2AppStoreMethod.html" class="post-title-link" itemprop="url">iOS跳转到AppStore常用方法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-19 13:33:49" itemprop="dateCreated datePublished" datetime="2018-03-19T13:33:49+08:00">2018-03-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2018/03/19/Jump2AppStoreMethod.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/19/Jump2AppStoreMethod.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2018/03/19/Jump2AppStoreMethod.html" class="leancloud_visitors" data-flag-title="iOS跳转到AppStore常用方法">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">935</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>跳转到 AppStore 的常用方法，以下网址中将 id 后面的数字改为自己 App 的 id 即可。</p>
+</blockquote>
+<h4 id="1-通过Safari-输入网址跳转到-AppStore"><a href="#1-通过Safari-输入网址跳转到-AppStore" class="headerlink" title="1.通过Safari 输入网址跳转到 AppStore"></a>1.通过<code>Safari</code> 输入网址跳转到 AppStore</h4><ul>
+<li><code>http://itunes.apple.com/us/app/id1234567890</code></li>
+</ul>
+<h4 id="2-App-内部通过代码直接跳转到-AppStore"><a href="#2-App-内部通过代码直接跳转到-AppStore" class="headerlink" title="2.App 内部通过代码直接跳转到 AppStore"></a>2.App 内部通过代码直接跳转到 AppStore</h4><ul>
+<li><code>itms-apps://itunes.apple.com/cn/app/jie-zou-da-shi/id1234567890?mt=8</code></li>
+</ul>
+<h4 id="3-App-内部通过代码跳转到-AppStore-的评论区"><a href="#3-App-内部通过代码跳转到-AppStore-的评论区" class="headerlink" title="3.App 内部通过代码跳转到 AppStore 的评论区"></a>3.App 内部通过代码跳转到 AppStore 的评论区</h4><ul>
+<li><code>itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&amp;id=1234567890</code></li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/03/19/Jump2AppStoreMethod.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2018/01/16/iOS/AppStore/利用iTunes接口检查App版本更新.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nilhy">
+      <meta itemprop="description" content="优秀的人,不是不合群<br>而是他们合群的人里面没有你">
+      <meta itemprop="image" content="/images/avatar/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nilhy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/01/16/iOS/AppStore/利用iTunes接口检查App版本更新.html" class="post-title-link" itemprop="url">利用 iTunes 接口检查App版本更新</a>
               
             
           </h1>
@@ -961,8 +1404,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/01/16/iOS/skill/利用iTunes接口检查App版本更新.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/16/iOS/skill/利用iTunes接口检查App版本更新.html" itemprop="commentCount"></span>
+                <a href="/2018/01/16/iOS/AppStore/利用iTunes接口检查App版本更新.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/16/iOS/AppStore/利用iTunes接口检查App版本更新.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -970,7 +1413,7 @@
 
           
           
-            <span id="/2018/01/16/iOS/skill/利用iTunes接口检查App版本更新.html" class="leancloud_visitors" data-flag-title="利用 iTunes 接口检查App版本更新">
+            <span id="/2018/01/16/iOS/AppStore/利用iTunes接口检查App版本更新.html" class="leancloud_visitors" data-flag-title="利用 iTunes 接口检查App版本更新">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1040,7 +1483,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/16/iOS/skill/利用iTunes接口检查App版本更新.html#more" rel="contents">
+              <a class="btn" href="/2018/01/16/iOS/AppStore/利用iTunes接口检查App版本更新.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2197,227 +2640,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2016/11/14/iOS/Objective-C/Objective-C-事件处理与如何获得最佳点击的View.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="nilhy">
-      <meta itemprop="description" content="优秀的人,不是不合群<br>而是他们合群的人里面没有你">
-      <meta itemprop="image" content="/images/avatar/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="nilhy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/11/14/iOS/Objective-C/Objective-C-事件处理与如何获得最佳点击的View.html" class="post-title-link" itemprop="url">Objective-C-事件处理与如何获得最佳点击的View</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-11-14 16:46:47" itemprop="dateCreated datePublished" datetime="2016-11-14T16:46:47+08:00">2016-11-14</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2016/11/14/iOS/Objective-C/Objective-C-事件处理与如何获得最佳点击的View.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/11/14/iOS/Objective-C/Objective-C-事件处理与如何获得最佳点击的View.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2016/11/14/iOS/Objective-C/Objective-C-事件处理与如何获得最佳点击的View.html" class="leancloud_visitors" data-flag-title="Objective-C-事件处理与如何获得最佳点击的View">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">2.5k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">2 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="事件的产生与传递"><a href="#事件的产生与传递" class="headerlink" title="事件的产生与传递"></a>事件的产生与传递</h3><h4 id="事件是如何产生与传递的"><a href="#事件是如何产生与传递的" class="headerlink" title="事件是如何产生与传递的?"></a>事件是如何产生与传递的?</h4><ul>
-<li>当发生触摸事件的后,系统会将该事件加入到一个由UIApplication管理的时间队列<br>中,UIApplication会从事件队列中取出最前面的事件,并将这个事件分发下去,以便处理,主<br>窗口即Window 会在视图层次中找到一个合适的视图来处理触摸事件</li>
-<li>触摸事件的传递是从父控件传递给子控件的,如果父控件不能接受事件,则里面的所有子控件也不能接收事件</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2016/11/14/iOS/Objective-C/Objective-C-事件处理与如何获得最佳点击的View.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2459,7 +2688,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2509,7 +2738,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2632,7 +2867,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">33k</span>
   
 
   
@@ -2643,7 +2878,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
   
 </div>
 
@@ -3271,6 +3506,8 @@
 
   
   
+    
+      
     
       
     
