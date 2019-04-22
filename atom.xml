@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nilhy.cn/"/>
-  <updated>2019-04-21T13:25:51.000Z</updated>
+  <updated>2019-04-22T08:12:44.000Z</updated>
   <id>http://nilhy.cn/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Swift 粒子动画CAEmitterLayer简单使用</title>
+    <link href="http://nilhy.cn/2019/04/22/iOS/CoreAnimation/CAEmitter%E4%BD%BF%E7%94%A8.html"/>
+    <id>http://nilhy.cn/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html</id>
+    <published>2019-04-22T08:01:37.000Z</published>
+    <updated>2019-04-22T08:12:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="粒子系统介绍"><a href="#粒子系统介绍" class="headerlink" title="粒子系统介绍"></a>粒子系统介绍</h3><ul><li><p>什么是粒子系统？</p><ul><li>粒子系统是由总体具有相同的表现规律，个体却随机表现出不同的特征的大量显示元素构成的集合。</li></ul></li><li><p>粒子定义有三要素</p><ul><li>群体性：粒子系统是由“大量显示元素”构成的(例如雪、雨、一团雾等等)</li><li>统一性：粒子系统的每个元素具有相同的表现规律(例如下雨、下雪，方向都是从上向下)</li><li>随机性：粒子系统的每个元素又随机表现出不同特征(例如下雪，每个雪花下落的速度会有不同，大小会有不同、方向也会有略微的不同)</li></ul></li></ul><a id="more"></a><h3 id="粒子系统应用场景"><a href="#粒子系统应用场景" class="headerlink" title="粒子系统应用场景"></a>粒子系统应用场景</h3><ul><li>影视行业<ul><li>目前我们经常看的大片，比如沙尘暴、暴风雨、暴雪、烟花 等等，很多都是粒子特效做出来的。很逼真，而且相比真实世界中去实拍，成本要低很多</li></ul></li><li>游戏中<ul><li>爆炸、雨、雪、雾、烟花等等。都是粒子系统实现</li></ul></li><li>应用中<ul><li>主播房间右下角粒子动画</li><li>雪花/下雨/烟花等效果</li><li>QQ生日快乐一堆表情的跳动</li></ul></li></ul><h3 id="粒子系统的使用"><a href="#粒子系统的使用" class="headerlink" title="粒子系统的使用"></a>粒子系统的使用</h3><ul><li>步骤<ul><li>创建发射器</li><li>创建粒子, 设置粒子属性</li></ul></li></ul><ul><li>代码</li></ul><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Emitterable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Emitterable</span> <span class="title">where</span> <span class="title">Self</span> : <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">startEmittering</span><span class="params">(<span class="number">_</span> point : CGPoint)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 1.创建发射器</span></span><br><span class="line">        <span class="keyword">let</span> emitter = <span class="type">CAEmitterLayer</span>()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 2.设置发射器的位置</span></span><br><span class="line">        emitter.emitterPosition = point</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3.开启三维效果</span></span><br><span class="line">        emitter.preservesDepth = <span class="literal">true</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.创建粒子, 并且设置例子相关的属性</span></span><br><span class="line">        <span class="keyword">let</span> cell = <span class="type">CAEmitterCell</span>()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.2.设置粒子速度</span></span><br><span class="line">        cell.velocity = <span class="number">150</span></span><br><span class="line">        cell.velocityRange = <span class="number">100</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.3.设置例子的大小</span></span><br><span class="line">        cell.scale = <span class="number">0.7</span></span><br><span class="line">        cell.scaleRange = <span class="number">0.3</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.4.设置粒子方向</span></span><br><span class="line">        </span><br><span class="line">        cell.emissionLongitude = <span class="type">CGFloat</span>.pi / <span class="number">2</span></span><br><span class="line">        cell.emissionRange = <span class="type">CGFloat</span>.pi / <span class="number">6</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.5.设置例子的存活时间</span></span><br><span class="line">        cell.lifetime = <span class="number">3</span></span><br><span class="line">        cell.lifetimeRange = <span class="number">1.5</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.6.设置粒子旋转</span></span><br><span class="line">        cell.spin = <span class="type">CGFloat</span>.pi / <span class="number">2</span></span><br><span class="line">        cell.spinRange = <span class="type">CGFloat</span>.pi / <span class="number">4</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.6.设置例子每秒弹出的个数</span></span><br><span class="line">        cell.birthRate = <span class="number">2</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.7.设置粒子展示的图片</span></span><br><span class="line">        cell.contents = <span class="type">UIImage</span>(named: <span class="string">"imageName"</span>)?.cgImage</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5.将粒子设置到发射器中</span></span><br><span class="line">        emitter.emitterCells = [cell]</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 6.将发射器的layer添加到父layer中</span></span><br><span class="line">        view.layer.addSublayer(emitter)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 移除CAEmitterLayer</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">stopEmittering</span><span class="params">()</span></span> &#123;</span><br><span class="line">       </span><br><span class="line">        view.layer.sublayers?.<span class="built_in">filter</span>(&#123; $<span class="number">0</span>.isKind(of: <span class="type">CAEmitterLayer</span>.<span class="keyword">self</span>)&#125;).first?.removeFromSuperlayer()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;粒子系统介绍&quot;&gt;&lt;a href=&quot;#粒子系统介绍&quot; class=&quot;headerlink&quot; title=&quot;粒子系统介绍&quot;&gt;&lt;/a&gt;粒子系统介绍&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;什么是粒子系统？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;粒子系统是由总体具有相同的表现规律，个体却随机表现出不同的特征的大量显示元素构成的集合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;粒子定义有三要素&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;群体性：粒子系统是由“大量显示元素”构成的(例如雪、雨、一团雾等等)&lt;/li&gt;
+&lt;li&gt;统一性：粒子系统的每个元素具有相同的表现规律(例如下雨、下雪，方向都是从上向下)&lt;/li&gt;
+&lt;li&gt;随机性：粒子系统的每个元素又随机表现出不同特征(例如下雪，每个雪花下落的速度会有不同，大小会有不同、方向也会有略微的不同)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://nilhy.cn/categories/iOS/"/>
+    
+    
+      <category term="粒子动画" scheme="http://nilhy.cn/tags/%E7%B2%92%E5%AD%90%E5%8A%A8%E7%94%BB/"/>
+    
+      <category term="CAEmitterLayer" scheme="http://nilhy.cn/tags/CAEmitterLayer/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS全屏手势POP</title>

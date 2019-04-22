@@ -141,18 +141,18 @@
 
 
 
-  <meta name="description" content="开篇在iOS中,默认如果有导航控制器,当push到下一个控制器时,当前界面时可以局部侧滑返回的,这一段范围很少. 既然系统已经给我们了实现好了,侧滑返回,那么我们如何解决,全屏手势侧滑返回呢? 方案拿到系统的返回手势,操作一波runtime 打印导航控制器所有私有属性123456789/// 通过runtime获取对应的手势属性var count : UInt32 = 0let ivars = c">
-<meta name="keywords" content="Pop,runtime">
+  <meta name="description" content="粒子系统介绍 什么是粒子系统？  粒子系统是由总体具有相同的表现规律，个体却随机表现出不同的特征的大量显示元素构成的集合。   粒子定义有三要素  群体性：粒子系统是由“大量显示元素”构成的(例如雪、雨、一团雾等等) 统一性：粒子系统的每个元素具有相同的表现规律(例如下雨、下雪，方向都是从上向下) 随机性：粒子系统的每个元素又随机表现出不同特征(例如下雪，每个雪花下落的速度会有不同，大小会有不同、">
+<meta name="keywords" content="粒子动画,CAEmitterLayer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS全屏手势POP">
-<meta property="og:url" content="http://nilhy.cn/2019/04/21/fullScreenPop.html">
+<meta property="og:title" content="Swift 粒子动画CAEmitterLayer简单使用">
+<meta property="og:url" content="http://nilhy.cn/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html">
 <meta property="og:site_name" content="nilhy&#39;s Blog">
-<meta property="og:description" content="开篇在iOS中,默认如果有导航控制器,当push到下一个控制器时,当前界面时可以局部侧滑返回的,这一段范围很少. 既然系统已经给我们了实现好了,侧滑返回,那么我们如何解决,全屏手势侧滑返回呢? 方案拿到系统的返回手势,操作一波runtime 打印导航控制器所有私有属性123456789/// 通过runtime获取对应的手势属性var count : UInt32 = 0let ivars = c">
+<meta property="og:description" content="粒子系统介绍 什么是粒子系统？  粒子系统是由总体具有相同的表现规律，个体却随机表现出不同的特征的大量显示元素构成的集合。   粒子定义有三要素  群体性：粒子系统是由“大量显示元素”构成的(例如雪、雨、一团雾等等) 统一性：粒子系统的每个元素具有相同的表现规律(例如下雨、下雪，方向都是从上向下) 随机性：粒子系统的每个元素又随机表现出不同特征(例如下雪，每个雪花下落的速度会有不同，大小会有不同、">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-21T13:25:51.000Z">
+<meta property="og:updated_time" content="2019-04-22T08:12:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS全屏手势POP">
-<meta name="twitter:description" content="开篇在iOS中,默认如果有导航控制器,当push到下一个控制器时,当前界面时可以局部侧滑返回的,这一段范围很少. 既然系统已经给我们了实现好了,侧滑返回,那么我们如何解决,全屏手势侧滑返回呢? 方案拿到系统的返回手势,操作一波runtime 打印导航控制器所有私有属性123456789/// 通过runtime获取对应的手势属性var count : UInt32 = 0let ivars = c">
+<meta name="twitter:title" content="Swift 粒子动画CAEmitterLayer简单使用">
+<meta name="twitter:description" content="粒子系统介绍 什么是粒子系统？  粒子系统是由总体具有相同的表现规律，个体却随机表现出不同的特征的大量显示元素构成的集合。   粒子定义有三要素  群体性：粒子系统是由“大量显示元素”构成的(例如雪、雨、一团雾等等) 统一性：粒子系统的每个元素具有相同的表现规律(例如下雨、下雪，方向都是从上向下) 随机性：粒子系统的每个元素又随机表现出不同特征(例如下雪，每个雪花下落的速度会有不同，大小会有不同、">
 
 
 
@@ -162,7 +162,7 @@
 
   
   
-  <link rel="canonical" href="http://nilhy.cn/2019/04/21/fullScreenPop">
+  <link rel="canonical" href="http://nilhy.cn/2019/04/22/iOS/CoreAnimation/CAEmitter使用">
 
 
 
@@ -172,7 +172,7 @@
   };
 </script>
 
-  <title>iOS全屏手势POP | nilhy's Blog</title>
+  <title>Swift 粒子动画CAEmitterLayer简单使用 | nilhy's Blog</title>
   
 
 
@@ -440,7 +440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2019/04/21/fullScreenPop.html">
+    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nilhy">
@@ -457,7 +457,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS全屏手势POP
+          <h1 class="post-title" itemprop="name headline">Swift 粒子动画CAEmitterLayer简单使用
 
               
             
@@ -483,7 +483,7 @@
                 
               
 
-              <time title="创建时间：2019-04-21 20:58:46" itemprop="dateCreated datePublished" datetime="2019-04-21T20:58:46+08:00">2019-04-21</time>
+              <time title="创建时间：2019-04-22 16:01:37" itemprop="dateCreated datePublished" datetime="2019-04-22T16:01:37+08:00">2019-04-22</time>
             
 
             
@@ -520,8 +520,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/04/21/fullScreenPop.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/21/fullScreenPop.html" itemprop="commentCount"></span>
+                <a href="/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -529,7 +529,7 @@
 
           
           
-            <span id="/2019/04/21/fullScreenPop.html" class="leancloud_visitors" data-flag-title="iOS全屏手势POP">
+            <span id="/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html" class="leancloud_visitors" data-flag-title="Swift 粒子动画CAEmitterLayer简单使用">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -554,7 +554,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.7k</span>
+                <span title="本文字数">1.9k</span>
               
 
               
@@ -588,18 +588,48 @@
       
 
       
-        <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>在iOS中,默认如果有导航控制器,当push到下一个控制器时,当前界面时可以局部侧滑返回的,这一段范围很少.</p>
-<p>既然系统已经给我们了实现好了,侧滑返回,那么我们如何解决,全屏手势侧滑返回呢?</p>
-<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><h3 id="拿到系统的返回手势-操作一波"><a href="#拿到系统的返回手势-操作一波" class="headerlink" title="拿到系统的返回手势,操作一波"></a>拿到系统的返回手势,操作一波</h3><h4 id="runtime-打印导航控制器所有私有属性"><a href="#runtime-打印导航控制器所有私有属性" class="headerlink" title="runtime 打印导航控制器所有私有属性"></a>runtime 打印导航控制器所有私有属性</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 通过runtime获取对应的手势属性</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">count</span> : <span class="type">UInt32</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> ivars = class_copyIvarList(<span class="type">UIGestureRecognizer</span>.<span class="keyword">self</span>, &amp;<span class="built_in">count</span>)!</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> ivar = ivars[<span class="type">Int</span>(i)]</span><br><span class="line">    <span class="keyword">let</span> namep = ivar_getName(ivar)</span><br><span class="line">    <span class="keyword">let</span> name = <span class="type">String</span>(cString: namep!)<span class="comment">//属性名称</span></span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="粒子系统介绍"><a href="#粒子系统介绍" class="headerlink" title="粒子系统介绍"></a>粒子系统介绍</h3><ul>
+<li><p>什么是粒子系统？</p>
+<ul>
+<li>粒子系统是由总体具有相同的表现规律，个体却随机表现出不同的特征的大量显示元素构成的集合。</li>
+</ul>
+</li>
+<li><p>粒子定义有三要素</p>
+<ul>
+<li>群体性：粒子系统是由“大量显示元素”构成的(例如雪、雨、一团雾等等)</li>
+<li>统一性：粒子系统的每个元素具有相同的表现规律(例如下雨、下雪，方向都是从上向下)</li>
+<li>随机性：粒子系统的每个元素又随机表现出不同特征(例如下雪，每个雪花下落的速度会有不同，大小会有不同、方向也会有略微的不同)</li>
+</ul>
+</li>
+</ul>
 <a id="more"></a>
-<p>打印结果:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">_gestureFlags</span><br><span class="line">_targets // 这个保存手势的所有target</span><br><span class="line">_delayedTouches</span><br><span class="line">_delayedPresses</span><br><span class="line">_view</span><br><span class="line">_lastTouchTimestamp</span><br><span class="line">_firstEventTimestamp</span><br><span class="line">_state</span><br><span class="line">_allowedTouchTypes</span><br><span class="line">_initialTouchType</span><br><span class="line">_internalActiveTouches</span><br><span class="line">_forceClassifier</span><br><span class="line">_requiredPreviewForceState</span><br><span class="line">_touchForceObservable</span><br><span class="line">_touchForceObservableAndClassifierObservation</span><br><span class="line">_forceTargets</span><br><span class="line">_forcePressCount</span><br><span class="line">_beganObservable</span><br><span class="line">_failureRequirements</span><br><span class="line">_failureDependents</span><br><span class="line">_activeEvents</span><br><span class="line">_keepTouchesOnContinuation</span><br><span class="line">_delegate</span><br><span class="line">_allowedPressTypes</span><br><span class="line">_name</span><br><span class="line">_gestureEnvironment</span><br></pre></td></tr></table></figure>
-<h4 id="获取target"><a href="#获取target" class="headerlink" title="获取target"></a>获取target</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> <span class="keyword">let</span> anyObject = interactivePopGestureRecognizer!.value(forKey:  <span class="string">"_targets"</span>) <span class="keyword">as</span>? [<span class="type">AnyObject</span>] <span class="keyword">else</span> &#123; </span><br><span class="line">	<span class="keyword">return</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> object =  anyObject.first</span><br><span class="line"><span class="built_in">print</span>(object)</span><br></pre></td></tr></table></figure>
-<p>打印结果:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 原来是一个数组,数组中是一个tuple, tuple第一个是一个action,第二个既然是target对象</span></span><br><span class="line">[(action=handleNavigationTransition:, target=&lt;_UINavigationInteractiveTransition <span class="number">0x7fc664e4f850</span>&gt;)]</span><br></pre></td></tr></table></figure>
-<h4 id="KVC-取出target"><a href="#KVC-取出target" class="headerlink" title="KVC 取出target"></a>KVC 取出target</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> target = object.value(forKeyPath: <span class="string">"target"</span>)</span><br><span class="line"><span class="keyword">let</span> action = <span class="type">Selector</span>((<span class="string">"handleNavigationTransition:"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面是获取不到action的会奔溃</span></span><br><span class="line"><span class="comment">//let action = object.value(forKeyPath: "action") as? Selector</span></span><br></pre></td></tr></table></figure>
-<h4 id="替换手势"><a href="#替换手势" class="headerlink" title="替换手势"></a>替换手势</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//创建自己的手势 将系统的手势去代替自己创建的手势</span><br><span class="line">let panGes = UIPanGestureRecognizer(target: target, action: action)</span><br><span class="line">view.addGestureRecognizer(panGes)</span><br></pre></td></tr></table></figure>
-<h3 id="使用FDFullscreenPopGesture"><a href="#使用FDFullscreenPopGesture" class="headerlink" title="使用FDFullscreenPopGesture"></a>使用FDFullscreenPopGesture</h3><p>这玩意就补多少了,添加进去,啥都不用干,懒人方案,完美解决。</p>
+<h3 id="粒子系统应用场景"><a href="#粒子系统应用场景" class="headerlink" title="粒子系统应用场景"></a>粒子系统应用场景</h3><ul>
+<li>影视行业<ul>
+<li>目前我们经常看的大片，比如沙尘暴、暴风雨、暴雪、烟花 等等，很多都是粒子特效做出来的。很逼真，而且相比真实世界中去实拍，成本要低很多</li>
+</ul>
+</li>
+<li>游戏中<ul>
+<li>爆炸、雨、雪、雾、烟花等等。都是粒子系统实现</li>
+</ul>
+</li>
+<li>应用中<ul>
+<li>主播房间右下角粒子动画</li>
+<li>雪花/下雨/烟花等效果</li>
+<li>QQ生日快乐一堆表情的跳动</li>
+</ul>
+</li>
+</ul>
+<h3 id="粒子系统的使用"><a href="#粒子系统的使用" class="headerlink" title="粒子系统的使用"></a>粒子系统的使用</h3><ul>
+<li>步骤<ul>
+<li>创建发射器</li>
+<li>创建粒子, 设置粒子属性</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>代码</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Emitterable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Emitterable</span> <span class="title">where</span> <span class="title">Self</span> : <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">startEmittering</span><span class="params">(<span class="number">_</span> point : CGPoint)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 1.创建发射器</span></span><br><span class="line">        <span class="keyword">let</span> emitter = <span class="type">CAEmitterLayer</span>()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 2.设置发射器的位置</span></span><br><span class="line">        emitter.emitterPosition = point</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3.开启三维效果</span></span><br><span class="line">        emitter.preservesDepth = <span class="literal">true</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.创建粒子, 并且设置例子相关的属性</span></span><br><span class="line">        <span class="keyword">let</span> cell = <span class="type">CAEmitterCell</span>()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.2.设置粒子速度</span></span><br><span class="line">        cell.velocity = <span class="number">150</span></span><br><span class="line">        cell.velocityRange = <span class="number">100</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.3.设置例子的大小</span></span><br><span class="line">        cell.scale = <span class="number">0.7</span></span><br><span class="line">        cell.scaleRange = <span class="number">0.3</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.4.设置粒子方向</span></span><br><span class="line">        </span><br><span class="line">        cell.emissionLongitude = <span class="type">CGFloat</span>.pi / <span class="number">2</span></span><br><span class="line">        cell.emissionRange = <span class="type">CGFloat</span>.pi / <span class="number">6</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.5.设置例子的存活时间</span></span><br><span class="line">        cell.lifetime = <span class="number">3</span></span><br><span class="line">        cell.lifetimeRange = <span class="number">1.5</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.6.设置粒子旋转</span></span><br><span class="line">        cell.spin = <span class="type">CGFloat</span>.pi / <span class="number">2</span></span><br><span class="line">        cell.spinRange = <span class="type">CGFloat</span>.pi / <span class="number">4</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.6.设置例子每秒弹出的个数</span></span><br><span class="line">        cell.birthRate = <span class="number">2</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4.7.设置粒子展示的图片</span></span><br><span class="line">        cell.contents = <span class="type">UIImage</span>(named: <span class="string">"imageName"</span>)?.cgImage</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5.将粒子设置到发射器中</span></span><br><span class="line">        emitter.emitterCells = [cell]</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 6.将发射器的layer添加到父layer中</span></span><br><span class="line">        view.layer.addSublayer(emitter)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 移除CAEmitterLayer</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">stopEmittering</span><span class="params">()</span></span> &#123;</span><br><span class="line">       </span><br><span class="line">        view.layer.sublayers?.<span class="built_in">filter</span>(&#123; $<span class="number">0</span>.isKind(of: <span class="type">CAEmitterLayer</span>.<span class="keyword">self</span>)&#125;).first?.removeFromSuperlayer()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -667,7 +697,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://nilhy.cn/2019/04/21/fullScreenPop.html" title="iOS全屏手势POP">http://nilhy.cn/2019/04/21/fullScreenPop.html</a>
+    <a href="http://nilhy.cn/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html" title="Swift 粒子动画CAEmitterLayer简单使用">http://nilhy.cn/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1IYW5z"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
@@ -680,9 +710,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Pop/" rel="tag"># Pop</a>
+            <a href="/tags/粒子动画/" rel="tag"># 粒子动画</a>
           
-            <a href="/tags/runtime/" rel="tag"># runtime</a>
+            <a href="/tags/CAEmitterLayer/" rel="tag"># CAEmitterLayer</a>
           
         </div>
       
@@ -695,8 +725,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/18/aria2_config.html" rel="next" title="mac 上配置 aria2 加快下载速度的方法">
-                <i class="fa fa-chevron-left"></i> mac 上配置 aria2 加快下载速度的方法
+              <a href="/2019/04/21/fullScreenPop.html" rel="next" title="iOS全屏手势POP">
+                <i class="fa fa-chevron-left"></i> iOS全屏手势POP
               </a>
             
           </div>
@@ -704,10 +734,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html" rel="prev" title="Swift 粒子动画CAEmitterLayer简单使用">
-                Swift 粒子动画CAEmitterLayer简单使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -945,7 +971,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开篇"><span class="nav-number">1.</span> <span class="nav-text">开篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案"><span class="nav-number">2.</span> <span class="nav-text">方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拿到系统的返回手势-操作一波"><span class="nav-number">2.1.</span> <span class="nav-text">拿到系统的返回手势,操作一波</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#runtime-打印导航控制器所有私有属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">runtime 打印导航控制器所有私有属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取target"><span class="nav-number">2.1.2.</span> <span class="nav-text">获取target</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KVC-取出target"><span class="nav-number">2.1.3.</span> <span class="nav-text">KVC 取出target</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#替换手势"><span class="nav-number">2.1.4.</span> <span class="nav-text">替换手势</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用FDFullscreenPopGesture"><span class="nav-number">2.2.</span> <span class="nav-text">使用FDFullscreenPopGesture</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#粒子系统介绍"><span class="nav-number">1.</span> <span class="nav-text">粒子系统介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#粒子系统应用场景"><span class="nav-number">2.</span> <span class="nav-text">粒子系统应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#粒子系统的使用"><span class="nav-number">3.</span> <span class="nav-text">粒子系统的使用</span></a></li></ol></div>
             
 
           </div>
