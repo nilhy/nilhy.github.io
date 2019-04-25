@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://nilhy.cn/resume/index.html</loc>
+    
+    <lastmod>2019-04-25T14:33:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://nilhy.cn/2019/04/18/aria2_config.html</loc>
     
     <lastmod>2019-04-22T08:16:58.000Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>http://nilhy.cn/2017/10/02/swift-class&struct.html</loc>
     
     <lastmod>2019-04-20T13:19:07.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nilhy.cn/resume/index.html</loc>
-    
-    <lastmod>2019-04-20T13:02:36.000Z</lastmod>
     
   </url>
   
