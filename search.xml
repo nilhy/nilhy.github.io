@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[pod search 搜索类库失败的解决办法]]></title>
+    <url>%2F2019%2F05%2F23%2FMac%2Fcocoapods%2Fpod%20search%20%E6%90%9C%E7%B4%A2%E7%B1%BB%E5%BA%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html</url>
+    <content type="text"><![CDATA[pod search 搜索类库失败的解决办法执行pod search来搜索类库信息时，报错: [!] Unable to find a pod with name, author, summary, or descriptionmatching &#39;······&#39;成功安装CocoaPods，但不能pod search搜素类库的情况 1. 执行pod setup 其实在你安装CocoaPods执行pod install时，系统会默认操作pod setup，然而由于中国强大的墙可能会pod setup不成功。这时就需要手动执行pod setup指令，如下： 终端输入：pod setup会出现Setting up CocoaPods master repo，稍等几十秒，最底下会输出Setup completed。说明执行pod setup成功。 如果pod search操作还是搜索失败，如下：终端输入：pod search AFNetworking 输出：Unable to find a pod with name, author, summary, or descriptionmatching &#39;AFNetworking&#39;这时就需要继续下面的步骤了。 2. 删除~/Library/Caches/CocoaPods目录下的search_index.json文件 pod setup成功后，依然不能pod search，是因为之前你执行pod search生成了search_index.json，此时需要删掉。终端输入：rm ~/Library/Caches/CocoaPods/search_index.json删除成功后，再执行pod search。 3. 执行pod search 终端输入: pod search afnetworking(不区分大小写) 输出：Creating search index for spec repo &#39;master&#39;.. Done!，稍等片刻······就会出现所有带有afnetworking字段的类库。]]></content>
+      <categories>
+        <category>Cocoapods</category>
+      </categories>
+      <tags>
+        <tag>Cocoapods</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift 粒子动画CAEmitterLayer简单使用]]></title>
     <url>%2F2019%2F04%2F22%2FiOS%2FCoreAnimation%2FCAEmitter%E4%BD%BF%E7%94%A8.html</url>
     <content type="text"><![CDATA[粒子系统介绍 什么是粒子系统？ 粒子系统是由总体具有相同的表现规律，个体却随机表现出不同的特征的大量显示元素构成的集合。 粒子定义有三要素 群体性：粒子系统是由“大量显示元素”构成的(例如雪、雨、一团雾等等) 统一性：粒子系统的每个元素具有相同的表现规律(例如下雨、下雪，方向都是从上向下) 随机性：粒子系统的每个元素又随机表现出不同特征(例如下雪，每个雪花下落的速度会有不同，大小会有不同、方向也会有略微的不同) 粒子系统应用场景 影视行业 目前我们经常看的大片，比如沙尘暴、暴风雨、暴雪、烟花 等等，很多都是粒子特效做出来的。很逼真，而且相比真实世界中去实拍，成本要低很多 游戏中 爆炸、雨、雪、雾、烟花等等。都是粒子系统实现 应用中 主播房间右下角粒子动画 雪花/下雨/烟花等效果 QQ生日快乐一堆表情的跳动 粒子系统的使用 步骤 创建发射器 创建粒子, 设置粒子属性 代码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859protocol Emitterable &#123; &#125;extension Emitterable where Self : UIViewController &#123; func startEmittering(_ point : CGPoint) &#123; // 1.创建发射器 let emitter = CAEmitterLayer() // 2.设置发射器的位置 emitter.emitterPosition = point // 3.开启三维效果 emitter.preservesDepth = true // 4.创建粒子, 并且设置例子相关的属性 let cell = CAEmitterCell() // 4.2.设置粒子速度 cell.velocity = 150 cell.velocityRange = 100 // 4.3.设置例子的大小 cell.scale = 0.7 cell.scaleRange = 0.3 // 4.4.设置粒子方向 cell.emissionLongitude = CGFloat.pi / 2 cell.emissionRange = CGFloat.pi / 6 // 4.5.设置例子的存活时间 cell.lifetime = 3 cell.lifetimeRange = 1.5 // 4.6.设置粒子旋转 cell.spin = CGFloat.pi / 2 cell.spinRange = CGFloat.pi / 4 // 4.6.设置例子每秒弹出的个数 cell.birthRate = 2 // 4.7.设置粒子展示的图片 cell.contents = UIImage(named: "imageName")?.cgImage // 5.将粒子设置到发射器中 emitter.emitterCells = [cell] // 6.将发射器的layer添加到父layer中 view.layer.addSublayer(emitter) &#125; /// 移除CAEmitterLayer func stopEmittering() &#123; view.layer.sublayers?.filter(&#123; $0.isKind(of: CAEmitterLayer.self)&#125;).first?.removeFromSuperlayer() &#125;&#125;]]></content>

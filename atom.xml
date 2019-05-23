@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nilhy.cn/"/>
-  <updated>2019-04-22T08:12:44.000Z</updated>
+  <updated>2019-05-23T09:37:45.000Z</updated>
   <id>http://nilhy.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pod search 搜索类库失败的解决办法</title>
+    <link href="http://nilhy.cn/2019/05/23/Mac/cocoapods/pod%20search%20%E6%90%9C%E7%B4%A2%E7%B1%BB%E5%BA%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html"/>
+    <id>http://nilhy.cn/2019/05/23/Mac/cocoapods/pod search 搜索类库失败的解决办法.html</id>
+    <published>2019-05-23T09:34:22.000Z</published>
+    <updated>2019-05-23T09:37:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="pod-search-搜索类库失败的解决办法"><a href="#pod-search-搜索类库失败的解决办法" class="headerlink" title="pod search 搜索类库失败的解决办法"></a>pod search 搜索类库失败的解决办法</h4><p>执行<code>pod search</code>来搜索类库信息时，报错: <code>[!] Unable to find a pod with name, author, summary, or descriptionmatching &#39;······&#39;</code><br>成功安装CocoaPods，但不能pod search搜素类库的情况</p><h4 id="1-执行pod-setup"><a href="#1-执行pod-setup" class="headerlink" title="1. 执行pod setup"></a>1. 执行pod setup</h4><ul><li>其实在你安装<code>CocoaPods</code>执行<code>pod install</code>时，系统会默认操作<code>pod setup</code>，然而由于中国强大的墙可能会<code>pod setup</code>不成功。这时就需要手动执行<code>pod setup</code>指令，如下：</li><li>终端输入：pod setup<br>会出现<code>Setting up CocoaPods master repo</code>，稍等几十秒，最底下会输出<code>Setup completed。说明执行pod setup</code>成功。</li><li>如果<code>pod search</code>操作还是搜索失败，如下：<br>终端输入：<code>pod search AFNetworking</code></li><li>输出：<code>Unable to find a pod with name, author, summary, or descriptionmatching &#39;AFNetworking&#39;</code>这时就需要继续下面的步骤了。</li></ul><h4 id="2-删除-Library-Caches-CocoaPods目录下的search-index-json文件"><a href="#2-删除-Library-Caches-CocoaPods目录下的search-index-json文件" class="headerlink" title="2. 删除~/Library/Caches/CocoaPods目录下的search_index.json文件"></a>2. 删除~/Library/Caches/CocoaPods目录下的search_index.json文件</h4><ul><li><code>pod setup</code>成功后，依然不能<code>pod search</code>，是因为之前你执行<code>pod search</code>生成了<code>search_index.json</code>，此时需要删掉。<br>终端输入：<code>rm ~/Library/Caches/CocoaPods/search_index.json</code><br>删除成功后，再执行<code>pod search</code>。</li></ul><h4 id="3-执行pod-search"><a href="#3-执行pod-search" class="headerlink" title="3. 执行pod search"></a>3. 执行pod search</h4><ul><li>终端输入: <code>pod search afnetworking</code>(不区分大小写)</li><li>输出：<code>Creating search index for spec repo &#39;master&#39;.. Done!</code>，稍等片刻······就会出现所有带有<code>afnetworking</code>字段的类库。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;pod-search-搜索类库失败的解决办法&quot;&gt;&lt;a href=&quot;#pod-search-搜索类库失败的解决办法&quot; class=&quot;headerlink&quot; title=&quot;pod search 搜索类库失败的解决办法&quot;&gt;&lt;/a&gt;pod search 搜索类库失败的解决
+      
+    
+    </summary>
+    
+      <category term="Cocoapods" scheme="http://nilhy.cn/categories/Cocoapods/"/>
+    
+    
+      <category term="Cocoapods" scheme="http://nilhy.cn/tags/Cocoapods/"/>
+    
+  </entry>
   
   <entry>
     <title>Swift 粒子动画CAEmitterLayer简单使用</title>

@@ -437,6 +437,228 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2019/05/23/Mac/cocoapods/pod search 搜索类库失败的解决办法.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nilhy">
+      <meta itemprop="description" content="优秀的人,不是不合群<br>而是他们合群的人里面没有你">
+      <meta itemprop="image" content="/images/avatar/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nilhy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/23/Mac/cocoapods/pod search 搜索类库失败的解决办法.html" class="post-title-link" itemprop="url">pod search 搜索类库失败的解决办法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-23 17:34:22" itemprop="dateCreated datePublished" datetime="2019-05-23T17:34:22+08:00">2019-05-23</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Cocoapods/" itemprop="url" rel="index"><span itemprop="name">Cocoapods</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/05/23/Mac/cocoapods/pod search 搜索类库失败的解决办法.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/23/Mac/cocoapods/pod search 搜索类库失败的解决办法.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/05/23/Mac/cocoapods/pod search 搜索类库失败的解决办法.html" class="leancloud_visitors" data-flag-title="pod search 搜索类库失败的解决办法">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">907</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="pod-search-搜索类库失败的解决办法"><a href="#pod-search-搜索类库失败的解决办法" class="headerlink" title="pod search 搜索类库失败的解决办法"></a>pod search 搜索类库失败的解决办法</h4><p>执行<code>pod search</code>来搜索类库信息时，报错: <code>[!] Unable to find a pod with name, author, summary, or descriptionmatching &#39;······&#39;</code><br>成功安装CocoaPods，但不能pod search搜素类库的情况</p>
+<h4 id="1-执行pod-setup"><a href="#1-执行pod-setup" class="headerlink" title="1. 执行pod setup"></a>1. 执行pod setup</h4><ul>
+<li>其实在你安装<code>CocoaPods</code>执行<code>pod install</code>时，系统会默认操作<code>pod setup</code>，然而由于中国强大的墙可能会<code>pod setup</code>不成功。这时就需要手动执行<code>pod setup</code>指令，如下：</li>
+<li>终端输入：pod setup<br>会出现<code>Setting up CocoaPods master repo</code>，稍等几十秒，最底下会输出<code>Setup completed。说明执行pod setup</code>成功。</li>
+<li>如果<code>pod search</code>操作还是搜索失败，如下：<br>终端输入：<code>pod search AFNetworking</code></li>
+<li>输出：<code>Unable to find a pod with name, author, summary, or descriptionmatching &#39;AFNetworking&#39;</code>这时就需要继续下面的步骤了。</li>
+</ul>
+<h4 id="2-删除-Library-Caches-CocoaPods目录下的search-index-json文件"><a href="#2-删除-Library-Caches-CocoaPods目录下的search-index-json文件" class="headerlink" title="2. 删除~/Library/Caches/CocoaPods目录下的search_index.json文件"></a>2. 删除~/Library/Caches/CocoaPods目录下的search_index.json文件</h4><ul>
+<li><code>pod setup</code>成功后，依然不能<code>pod search</code>，是因为之前你执行<code>pod search</code>生成了<code>search_index.json</code>，此时需要删掉。<br>终端输入：<code>rm ~/Library/Caches/CocoaPods/search_index.json</code><br>删除成功后，再执行<code>pod search</code>。</li>
+</ul>
+<h4 id="3-执行pod-search"><a href="#3-执行pod-search" class="headerlink" title="3. 执行pod search"></a>3. 执行pod search</h4><ul>
+<li>终端输入: <code>pod search afnetworking</code>(不区分大小写)</li>
+<li>输出：<code>Creating search index for spec repo &#39;master&#39;.. Done!</code>，稍等片刻······就会出现所有带有<code>afnetworking</code>字段的类库。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2019/04/22/iOS/CoreAnimation/CAEmitter使用.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2433,223 +2655,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2017/02/11/iOS/Objective-C/Objective-C-不定参详解.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="nilhy">
-      <meta itemprop="description" content="优秀的人,不是不合群<br>而是他们合群的人里面没有你">
-      <meta itemprop="image" content="/images/avatar/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="nilhy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/02/11/iOS/Objective-C/Objective-C-不定参详解.html" class="post-title-link" itemprop="url">Objective-C-不定参详解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-02-11 10:46:47" itemprop="dateCreated datePublished" datetime="2017-02-11T10:46:47+08:00">2017-02-11</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/02/11/iOS/Objective-C/Objective-C-不定参详解.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/02/11/iOS/Objective-C/Objective-C-不定参详解.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2017/02/11/iOS/Objective-C/Objective-C-不定参详解.html" class="leancloud_visitors" data-flag-title="Objective-C-不定参详解">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.2k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="简单介绍一下这个-下面会有详细的用法和解释、"><a href="#简单介绍一下这个-下面会有详细的用法和解释、" class="headerlink" title="简单介绍一下这个,下面会有详细的用法和解释、"></a>简单介绍一下这个,下面会有详细的用法和解释、</h3><blockquote>
-<p><code>大致含义</code> : 一个可变参数函数是指一个函数拥有不定的参数，即为一个函数可接收多个参数。有时会遇到一些算术问题需要用到，比如是计算传入参数的总和，字符串的连接或是其它操作过程，在 Objective-C 里也经常使用，最经典的就是 NSLog（ C 为 printf ） ，它可以指定格式的输出，格式化输出的内容.</p>
-</blockquote>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/02/11/iOS/Objective-C/Objective-C-不定参详解.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2698,7 +2703,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2721,7 +2726,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2758,7 +2765,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2881,7 +2890,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">21k</span>
   
 
   
@@ -2892,7 +2901,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
   
 </div>
 
