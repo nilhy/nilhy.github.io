@@ -141,17 +141,17 @@
 
 
 
-  <meta name="description" content="优秀的人,不是不合群而是他们合群的人里面没有你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nilhy&#39;s Blog">
-<meta property="og:url" content="http://nilhy.cn/tags/index.html">
+  <meta name="description" content="前言之前项目tableview cell 圆角,尝试过图片当做背景切换, 也尝试过UIRectCorner ,判断首行和最后一个行,但是老实说,效果一直不是很理想, 经过不停的搜索,在stackoverflow 找到了我想要的答案 原理篇其实tableview section圆角,并不是很难,实现方式也很多种, 但是总结都是 通过 tableview willDisplay forRowAt 方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 设置tableView每个分区cell圆角">
+<meta property="og:url" content="http://nilhy.cn/2019/06/16/TableViewSectionRoundedCorners.html">
 <meta property="og:site_name" content="nilhy&#39;s Blog">
-<meta property="og:description" content="优秀的人,不是不合群而是他们合群的人里面没有你">
+<meta property="og:description" content="前言之前项目tableview cell 圆角,尝试过图片当做背景切换, 也尝试过UIRectCorner ,判断首行和最后一个行,但是老实说,效果一直不是很理想, 经过不停的搜索,在stackoverflow 找到了我想要的答案 原理篇其实tableview section圆角,并不是很难,实现方式也很多种, 但是总结都是 通过 tableview willDisplay forRowAt 方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-21T05:46:49.000Z">
+<meta property="og:updated_time" content="2019-06-16T13:12:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nilhy&#39;s Blog">
-<meta name="twitter:description" content="优秀的人,不是不合群而是他们合群的人里面没有你">
+<meta name="twitter:title" content="Swift 设置tableView每个分区cell圆角">
+<meta name="twitter:description" content="前言之前项目tableview cell 圆角,尝试过图片当做背景切换, 也尝试过UIRectCorner ,判断首行和最后一个行,但是老实说,效果一直不是很理想, 经过不停的搜索,在stackoverflow 找到了我想要的答案 原理篇其实tableview section圆角,并不是很难,实现方式也很多种, 但是总结都是 通过 tableview willDisplay forRowAt 方法">
 
 
 
@@ -161,7 +161,7 @@
 
   
   
-  <link rel="canonical" href="http://nilhy.cn/tags/">
+  <link rel="canonical" href="http://nilhy.cn/2019/06/16/TableViewSectionRoundedCorners">
 
 
 
@@ -171,7 +171,7 @@
   };
 </script>
 
-  <title>标签 | nilhy's Blog</title>
+  <title>Swift 设置tableView每个分区cell圆角 | nilhy's Blog</title>
   
 
 
@@ -322,7 +322,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -368,28 +368,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -445,105 +423,304 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://nilhy.cn/2019/06/16/TableViewSectionRoundedCorners.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nilhy">
+      <meta itemprop="description" content="优秀的人,不是不合群<br>而是他们合群的人里面没有你">
+      <meta itemprop="image" content="/images/avatar/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nilhy's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body han-init-context">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
+          <h1 class="post-title" itemprop="name headline">Swift 设置tableView每个分区cell圆角
+
               
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-                
-                  
-                
+                <span class="post-meta-item-text">发表于</span>
               
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
+
               
                 
-                  
+              
+
+              <time title="创建时间：2019-06-16 21:09:00" itemprop="dateCreated datePublished" datetime="2019-06-16T21:09:00+08:00">2019-06-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a></span>
+
+                
                 
               
-                
-                  
-                
+            </span>
+          
+
+          
+            
+            
               
-                
-                  
-                
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/06/16/TableViewSectionRoundedCorners.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/16/TableViewSectionRoundedCorners.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/06/16/TableViewSectionRoundedCorners.html" class="leancloud_visitors" data-flag-title="Swift 设置tableView每个分区cell圆角">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
-                
-                  
-                
+                <span class="post-meta-item-text">阅读次数：</span>
               
-                
-                  
-                
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
               
-              目前共计 11 个标签
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.8k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              
-                <a href="/tags/AppStore/" style="font-size: 12px; color: #ccc">AppStore</a> <a href="/tags/CAEmitterLayer/" style="font-size: 12px; color: #ccc">CAEmitterLayer</a> <a href="/tags/Cocoapods/" style="font-size: 12px; color: #ccc">Cocoapods</a> <a href="/tags/Objective-C/" style="font-size: 30px; color: #111">Objective-C</a> <a href="/tags/Pop/" style="font-size: 12px; color: #ccc">Pop</a> <a href="/tags/Python/" style="font-size: 30px; color: #111">Python</a> <a href="/tags/Swift/" style="font-size: 30px; color: #111">Swift</a> <a href="/tags/aria2/" style="font-size: 12px; color: #ccc">aria2</a> <a href="/tags/runtime/" style="font-size: 12px; color: #ccc">runtime</a> <a href="/tags/版本更新/" style="font-size: 12px; color: #ccc">版本更新</a> <a href="/tags/粒子动画/" style="font-size: 12px; color: #ccc">粒子动画</a>
-              
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前项目tableview cell 圆角,尝试过图片当做背景切换, 也尝试过<code>UIRectCorner</code> ,判断首行和最后一个行,但是老实说,效果一直不是很理想, 经过不停的搜索,在stackoverflow 找到了我想要的答案</p>
+<h3 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h3><p>其实<code>tableview section</code>圆角,并不是很难,实现方式也很多种, 但是总结都是 通过 <code>tableview willDisplay forRowAt</code> 方法,然后判断当前是否为<code>section</code>的第一行, 和<code>section</code>的最后一行, 通过这种方式给tableView 设置一个<code>backgroundView</code> 来实现.</p>
+<p>注意了, 这里也是我遇到的坑,可能自己愚钝, <code>backgroundView</code> 是不需要设置大小的, 且<code>backgroundView</code> 的大小就等于你的<code>tableView</code> 大小, 之前一直卡在这里, 我在想，我想调整这没有圆角的左右两侧间距,这可怎么办啊。 愚笨啊,可能自己卡壳了, 其实重写<code>tableView frame</code> 的方法就行了。自己也浪费不少时间在这一点上。现在想想真的有点傻.</p>
+<a id="more"></a>
+<h3 id="TableView-Delegate-设置"><a href="#TableView-Delegate-设置" class="headerlink" title="TableView Delegate 设置"></a>TableView Delegate 设置</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (cell.responds(to: #selector(getter: <span class="type">UIView</span>.tintColor)))&#123;</span><br><span class="line">        <span class="keyword">if</span> tableView == <span class="keyword">self</span>.tableView &#123;</span><br><span class="line">            <span class="keyword">let</span> cornerRadius: <span class="type">CGFloat</span> = <span class="number">10</span></span><br><span class="line">            cell.backgroundColor = .clear</span><br><span class="line">            <span class="keyword">let</span> layer: <span class="type">CAShapeLayer</span> = <span class="type">CAShapeLayer</span>()</span><br><span class="line">            <span class="keyword">let</span> path: <span class="type">CGMutablePath</span> = <span class="type">CGMutablePath</span>()</span><br><span class="line">            </span><br><span class="line">            cell.updateConstraints()</span><br><span class="line">            <span class="keyword">let</span> bounds: <span class="type">CGRect</span> = cell.bounds</span><br><span class="line">            bounds.insetBy(dx: <span class="number">25</span>, dy: <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">var</span> addLine: <span class="type">Bool</span> = <span class="literal">false</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> indexPath.row == <span class="number">0</span> &amp;&amp; indexPath.row == ( tableView.numberOfRows(inSection: indexPath.section) - <span class="number">1</span>) &#123;</span><br><span class="line">                path.addRoundedRect(<span class="keyword">in</span>: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius)</span><br><span class="line">                </span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> indexPath.row == <span class="number">0</span> &#123;</span><br><span class="line">                path.move(to: <span class="type">CGPoint</span>(x: bounds.minX, y: bounds.maxY))</span><br><span class="line">                path.addArc(tangent1End: <span class="type">CGPoint</span>(x: bounds.minX, y: bounds.minY), tangent2End: <span class="type">CGPoint</span>(x: bounds.midX, y: bounds.minY), radius: cornerRadius)</span><br><span class="line">                path.addArc(tangent1End: <span class="type">CGPoint</span>(x: bounds.maxX, y: bounds.minY), tangent2End: <span class="type">CGPoint</span>(x: bounds.maxX, y: bounds.midY), radius: cornerRadius)</span><br><span class="line">                path.addLine(to: <span class="type">CGPoint</span>(x: bounds.maxX, y: bounds.maxY))</span><br><span class="line">                </span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> indexPath.row == (tableView.numberOfRows(inSection: indexPath.section) - <span class="number">1</span>) &#123;</span><br><span class="line">                path.move(to: <span class="type">CGPoint</span>(x: bounds.minX, y: bounds.minY))</span><br><span class="line">                path.addArc(tangent1End: <span class="type">CGPoint</span>(x: bounds.minX, y: bounds.maxY), tangent2End: <span class="type">CGPoint</span>(x: bounds.midX, y: bounds.maxY), radius: cornerRadius)</span><br><span class="line">                path.addArc(tangent1End: <span class="type">CGPoint</span>(x: bounds.maxX, y: bounds.maxY), tangent2End: <span class="type">CGPoint</span>(x: bounds.maxX, y: bounds.midY), radius: cornerRadius)</span><br><span class="line">                path.addLine(to: <span class="type">CGPoint</span>(x: bounds.maxX, y: bounds.minY))</span><br><span class="line">                </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                path.addRect(bounds)</span><br><span class="line">                addLine = <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            layer.path = path</span><br><span class="line">            layer.fillColor = <span class="type">UIColor</span>.<span class="type">HexColor</span>(<span class="number">0x181944</span>).cgColor</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> addLine &#123;</span><br><span class="line">                <span class="keyword">let</span> lineLayer: <span class="type">CALayer</span> = <span class="type">CALayer</span>()</span><br><span class="line">                <span class="keyword">let</span> lineHeight: <span class="type">CGFloat</span> = <span class="number">1.0</span> / <span class="type">UIScreen</span>.main.scale</span><br><span class="line">                lineLayer.frame = <span class="type">CGRect</span>(x: bounds.minX + <span class="number">10.0</span>, y: bounds.size.height - lineHeight, width: bounds.size.width, height: lineHeight)</span><br><span class="line">                lineLayer.backgroundColor = tableView.separatorColor?.cgColor</span><br><span class="line">                layer.addSublayer(lineLayer)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> testView: <span class="type">UIView</span> = <span class="type">UIView</span>(frame: bounds)</span><br><span class="line">            testView.layer.insertSublayer(layer, at: <span class="number">0</span>)</span><br><span class="line">            testView.backgroundColor = .clear</span><br><span class="line">            cell.backgroundView = testView</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="TableviewCell-设置"><a href="#TableviewCell-设置" class="headerlink" title="TableviewCell 设置"></a>TableviewCell 设置</h3><p>调整tableviewcell 的原因是, 如果你想调整左右两侧间隙, 就要重写tableviewcell 的frame </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="keyword">var</span> frame: <span class="type">CGRect</span> &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.frame</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> frame = newValue</span><br><span class="line">        frame.origin.x += <span class="number">15</span></span><br><span class="line">        frame.size.width -= <span class="number">2</span> * <span class="number">15</span></span><br><span class="line">        <span class="keyword">super</span>.frame = frame</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTg4MjI2MTkvaW9zLTctdGFibGV2aWV3LWxpa2UtaW4tc2V0dGluZ3MtYXBwLW9uLWlwYWQ=" title="https://stackoverflow.com/questions/18822619/ios-7-tableview-like-in-settings-app-on-ipad">stackoverflow<i class="fa fa-external-link"></i></span></li>
+</ul>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/reward/wechatpay.jpeg" alt="nilhy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/reward/alipay.jpeg" alt="nilhy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
 
 
 
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>nilhy</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
     
+    <a href="http://nilhy.cn/2019/06/16/TableViewSectionRoundedCorners.html" title="Swift 设置tableView每个分区cell圆角">http://nilhy.cn/2019/06/16/TableViewSectionRoundedCorners.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1IYW5z"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
-    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/23/Mac/cocoapods/pod search 搜索类库失败的解决办法.html" rel="next" title="pod search 搜索类库失败的解决办法">
+                <i class="fa fa-chevron-left"></i> pod search 搜索类库失败的解决办法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -563,8 +740,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -739,6 +925,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理篇"><span class="nav-number">1.1.</span> <span class="nav-text">原理篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TableView-Delegate-设置"><span class="nav-number">1.2.</span> <span class="nav-text">TableView Delegate 设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TableviewCell-设置"><span class="nav-number">1.3.</span> <span class="nav-text">TableviewCell 设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考地址"><span class="nav-number">2.</span> <span class="nav-text">参考地址</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1000,6 +1203,8 @@
 
 
 
+
+  
 
 
   
@@ -1331,38 +1536,35 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function() {
-        entries.push( $(this).attr('id').trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for (var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if (countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
           }
         })
         .fail(function ({ responseJSON }) {
@@ -1387,9 +1589,7 @@
             });
           };
           
-            if ($('.post-title-link').length >= 1) {
-              showTime(Counter);
-            }
+            addCount(Counter);
           
         });
     });
@@ -1480,7 +1680,7 @@ if ($('body').find('pre.mermaid').length) {
   <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
